@@ -9,8 +9,9 @@ import telebot
 import config
 
 
+SERVICE_TOKEN = "7320876373208763732087631d7379135977320732087632a62d78c736ea392a738de82"
 GROUP_ID = 101398842
-URL_VK = 'https://api.vk.com/method/wall.get?owner_id=-' + str(GROUP_ID) + '&count=20&filter=owner'
+URL_VK = 'https://api.vk.com/method/wall.get?owner_id=-' + str(GROUP_ID) + '&count=20&filter=owner&access_token=' + SERVICE_TOKEN
 BASE_POST_URL = 'https://vk.com/wall-' + str(GROUP_ID) + '_'
 FILENAME_VK = 'last_known_id.txt'
 BOT_TOKEN = config.BOT_TOKEN
