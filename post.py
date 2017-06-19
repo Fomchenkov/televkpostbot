@@ -9,8 +9,9 @@ import telebot
 import config
 
 
+SERVICE_TOKEN = config.SERVICE_TOKEN
 GROUP_ID = 101398842
-URL_VK = 'https://api.vk.com/method/wall.get?owner_id=-' + str(GROUP_ID) + '&count=20&filter=owner'
+URL_VK = 'https://api.vk.com/method/wall.get?owner_id=-' + str(GROUP_ID) + '&count=20&filter=owner&access_token=' + SERVICE_TOKEN
 BASE_POST_URL = 'https://vk.com/wall-' + str(GROUP_ID) + '_'
 FILENAME_VK = 'last_known_id.txt'
 BOT_TOKEN = config.BOT_TOKEN
@@ -26,6 +27,7 @@ def get_data():
 	timeout = eventlet.Timeout(10)
 	try:
 		feed = requests.get(URL_VK)
+		print(str(feed.json()))
 		return feed.json()
 	except eventlet.timeout.Timeout:
 		logging.warning('Got Timeout while retrieving VK JSON data. Cancelling...')
@@ -90,7 +92,7 @@ if __name__ == '__main__':
 		check_new_posts_vk()
 		logging.info('[App] Script went to sleep.')
 		try:
-			time.sleep(1 * 4)
+			time.sleep(60)
 		except KeyboardInterrupt: 
 			exit()
 	logging.info('[App] Script exited.\n')
