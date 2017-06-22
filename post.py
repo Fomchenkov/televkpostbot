@@ -1,11 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import time
+import logging
+
+import telebot
 import eventlet
 import requests
-import logging
-import telebot
+
 import config
 
 
